@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 
-char* search_ip(char* url, char* dns_server_ip){
+char* search_ip(char* url_request, char* dns_server_ip){
   
   int si_other_size = sizeof(si_other);
   if((socket_client = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1){
@@ -24,8 +24,8 @@ char* search_ip(char* url, char* dns_server_ip){
     exit(-1);
   }
 
-  //message.create_message(url);
-  char *message = url;
+  //message.create_message(url_request);
+  char *message = url_request;
 
   for(int i =0; i < 3; i++){
     //if(sendto(socket_client, this.message.content, 

@@ -27,3 +27,34 @@ void convert_hostname(unsigned char * hostname, unsigned char *response){
    }
    *response = '\0';
 }
+
+int create_msg(unsigned char* hostname, unsigned char* request){
+    unsigned char * body;
+    msg_header * header;
+    question_info * info;
+
+    // The random number for the id is 123
+    int id = 123;
+
+    header = (msg_header *) request;
+
+    // Add the header configuration
+    header->transaction_id = id; // Add the random id to the message
+    header->flags = 4; // Only activates recusive search flag
+    header->questoins_count = 1; // The number of questions
+    header->answers_count = 0;
+    header->authority_count = 0; 
+    header->additional_count = 0;
+
+    // Add the hostname to the message structure
+    body = &request[sizeof(msg_header)]; // Jump the header position, and goes to the body position
+    convert_hostname(hostname, body);
+
+    // Add the question info to the message
+    info = (question_info*)&request[sizeof(msg_header) + strlen((char * )body) + 1]; // Jump the body and header position, and goes to the info position
+    info->type = 1;
+    info->klass = 1;
+
+    // Returns the size of the message
+    return (sizeof(msg_header) + strlen((char *) body) + sizeof(question_info));
+}
