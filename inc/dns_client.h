@@ -6,7 +6,7 @@
 #include "message.h"
 
 
-#define PORT 5000
+#define PORT 53
 
 
 struct sockaddr_in si_other;
@@ -15,4 +15,4 @@ int i;
 char buffer[BUFFER_SIZE];
 //    Message message = Message();
         
-char* search_ip(char* url, char* dns_server_ip);
+char* search_ip(unsigned char* dns_server_ip, unsigned char* url_request, int size );

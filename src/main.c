@@ -13,15 +13,17 @@ int main(){
     int size;
     
     scanf("%s", url);
-    //scanf("%s", server_ip);
+    scanf("%s", server_ip);
+
+    printf("searching %s on %s...\n", url, server_ip);
 
     size = create_msg(url, request);
     
-    //search_ip(request, server_ip);
-    for(int i = 0; i < size; i++){
-        printf("%x %x\n", request[i], request[i+1]);
-        i++;
-    }
+    search_ip(server_ip, request, size);
+    //for(int i = 0; i < size; i++){
+    //    printf("%x %x\n", request[i], request[i+1]);
+    //    i++;
+    //}
     free(request);
 //    search_ip(url, server_ip); 
     return 0;
