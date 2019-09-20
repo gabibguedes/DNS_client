@@ -8,7 +8,6 @@
 
 
 char* search_ip(unsigned char* dns_server_ip, unsigned char* url_request, int size){
-  
   int si_other_size = sizeof(si_other);
   if((socket_client = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1){
     perror("Error while opening UPD socket\n");
@@ -18,11 +17,7 @@ char* search_ip(unsigned char* dns_server_ip, unsigned char* url_request, int si
   memset((char *) &si_other, 0, sizeof(si_other));
   si_other.sin_family = AF_INET;
   si_other.sin_port = htons(PORT);
-  
-  if(inet_aton(dns_server_ip, &si_other.sin_addr) == 0){
-    perror("inet error\n");
-    exit(-1);
-  }
+  si_other.sin_addr.s_addr = inet_addr((char *)dns_server_ip);
 
   char *message = (char *) url_request;
 
@@ -35,12 +30,12 @@ char* search_ip(unsigned char* dns_server_ip, unsigned char* url_request, int si
 
     memset(buffer, '\0', BUFFER_SIZE); 
     if(recvfrom(socket_client, buffer, BUFFER_SIZE, 0, 
-        (struct sockaddr *) &si_other, &si_other_size) != -1){
-          printf("%s\n", buffer);
+        (struct sockaddr *) &si_other, (socklen_t *)&si_other_size) != -1){
+          //printf("%s\n", buffer);
           break;
     }
   } 
   
   close(socket_client);
-  return NULL;
+  return buffer;
 }
