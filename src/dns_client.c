@@ -25,11 +25,12 @@ char* search_ip(char* url, char* dns_server_ip){
   }
 
   //message.create_message(url);
-  
+  char *message = url;
+
   for(int i =0; i < 3; i++){
     //if(sendto(socket_client, this.message.content, 
-    if(sendto(socket_client, "oi\n", 
-        strlen("oi\n"), 0, (struct sockaddr *) &si_other,
+    if(sendto(socket_client, message, 
+        strlen(message), 0, (struct sockaddr *) &si_other,
         si_other_size) == -1 ){
           perror("Error while trying to send a message\n");
           exit(-1);
