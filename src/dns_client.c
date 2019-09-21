@@ -52,7 +52,26 @@ char* read_response(char * response){
     while(buff[0] != '0') *buff++;
     *buff++;
 
-    
+    buff = &buff[20];
+    // printf("com ntohs\n");
+    // printf("--> %d\n", ntohs(buff[0]));
+    // *buff++;
+    // printf("--> %d\n", ntohs(buff[0]));
+    // *buff++;
+    // printf("--> %d\n", ntohs(buff[0]));
+    // *buff++;
+    // printf("--> %d\n", ntohs(buff[0]));
+    // *buff++;
+    printf("sem ntohs\n");
+    printf("--> %d\n", buff[0]);
+    *buff++;
+    printf("--> %d\n", buff[0]);
+    *buff++;
+    printf("--> %d\n", buff[0]);
+    *buff++;
+    printf("--> %d\n", buff[0]);
+    *buff++;
+
     //*buff +=2; // Jumps type size
     //*buff +=2; // Jumps class size
     //*buff +=2; // Jumps name class
@@ -72,18 +91,18 @@ char* read_response(char * response){
     printf("--> %u\n", buff[0]);
     *buff++;
 */
-int j;
-    //for(j=0; buff[j] != '0'; j++);
-    //printf("j= %d\n", j);
-    buff = &buff[96]; // data size
-    //*buff++;
-    buff = &buff[10];
-    printf("--> %u\n", buff[0]);
-    *buff++;
-    printf("--> %u\n", buff[0]);
-    *buff++;
-    printf("--> %u\n", buff[0]);
-    *buff++;
-    printf("--> %u\n", buff[0]);
-    *buff++;
+// int j;
+//     //for(j=0; buff[j] != '0'; j++);
+//     //printf("j= %d\n", j);
+//     buff = &buff[96]; // data size
+//     //*buff++;
+//     buff = &buff[10];
+//     printf("--> %u\n", buff[0]);
+//     *buff++;
+//     printf("--> %u\n", buff[0]);
+//     *buff++;
+//     printf("--> %u\n", buff[0]);
+//     *buff++;
+//     printf("--> %u\n", buff[0]);
+//     *buff++;
 }
