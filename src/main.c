@@ -30,7 +30,7 @@ int main(){
     response = search_ip(server_ip, request, size);
     printf("Resposta: \n");
     for(int i = 0; i < size; i++){
-        printf("%d %d\n", response[i], response[i+1]);
+        printf("%u %u\n", response[i], response[i+1]);
         i++;
     }
     free(request);
