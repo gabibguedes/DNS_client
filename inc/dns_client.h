@@ -23,4 +23,4 @@ struct _r_data{
 }r_data;
         
 char* search_ip(unsigned char* dns_server_ip, unsigned char* url_request, int size );
-char* read_response(char * response);
+char* read_response(char * response, int size);
